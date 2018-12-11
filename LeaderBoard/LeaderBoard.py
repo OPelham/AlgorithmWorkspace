@@ -7,34 +7,52 @@ scores = [] #all existing scores
 numberOfGames = 0 #number of games played by Alice
 alice = [] #scores of Alice's games
 
+#READ INPUT ASSIGN TO COLLECTIONS
 def readInput():
 	try:
 		with open('LeaderBoardInput.txt') as fp:
+			#wipe existing data
+			global numberOfPlayers
+			global scores
+			global numberOfGames
+			global alice
+
+			#read and assign lines to collections
 			lines = fp.readlines() #a list of lines
+			numberOfPlayers = lines[0].strip()
+			scores = lines[1].strip().split(" ")
+			numberOfGames = lines[2].strip()
+			alice = lines[3].strip().split(" ")
 
-			for line in lines:
-				line = line.strip()
-				
-			print(lines[0])
-			numberOfPlayers = lines[0]
+			#process strings to int
+			processInput(numberOfPlayers)
+			processInput(scores)
+			processInput(numberOfGames)
+			processInput(alice)
+
+			#print for debugging reasons
 			print(numberOfPlayers)
-
-			scores = lines[1]#.split(" ")
 			print(scores)
-
-			numberOfGames = lines[2]
 			print(numberOfGames)
-
-			alice = lines[3]
 			print(alice)
-
-
-				#row = line.split(" ")
-				#for strNumber in numberRow:
-				#	number = int(strNumber)
-				#	inputNumbers.append(number)
 
 	except FileNotFoundError as e:
 		print("No data file found")
 
+def rankScores():
+	for alicesscore in alice:
+		pass
+
+def processInput(list):
+	for unit in list:
+		unit = int(unit)
+
+
 readInput()
+#rankScores()
+print(numberOfPlayers)
+print(scores)
+print(numberOfGames)
+print(alice)
+print(numberOfGames + numberOfPlayers)
+
